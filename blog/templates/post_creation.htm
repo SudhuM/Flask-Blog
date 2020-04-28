@@ -1,0 +1,74 @@
+{% extends 'layout.htm' %}
+
+{% block content %}
+
+<!-- information Section -->
+<div class= 'row'>
+    <div class= 'col mr-3 '>
+        <div class="card ml-5 mt-4 mb-3 post-form">
+            <form action="" method= 'POST' enctype=
+                'multipart/form-data'>
+
+                {{ form.hidden_tag() }}
+
+                <legend class= ' m-4 form-group text-secondary'>
+                    Create New Post
+                </legend>
+
+                <hr class= 'mr-5 , ml-4'/>
+                <!-- POst title section    -->
+                <div class="form-group m-4 mr-5 post-form">
+
+                    {{ form.title.label(class = 'text-success')
+                    }}
+
+                    {{ form.title(class = 'form-control
+                    border-secondary') }}
+
+                </div>
+                <!-- Post content Section -->
+                <div class="form-group m-4 post-form">
+
+                    {{ form.content.label(class =
+                    'text-success')
+                    }}
+                    {{ form.content(class = 'form-control
+                    border-secondary') }}
+
+
+                </div>
+
+                <!-- post button -->
+
+                <div class= 'm-4'>
+                    {{ form.post(class = 'btn ,
+                    btn-outline-info
+                    border-success ') }}
+                </div>
+            </form>
+
+        </div>
+    </div>
+
+
+    <!-- Side Bar Section -->
+
+    <div class= 'col-md-auto'>
+        <div class="card mt-4 border-secondary" style="width: 18rem;
+            float:right">
+            <div class="card-body">
+                <h5 class="card-title">Our Sidebar</h5>
+                <p class="card-text">Any Information You would like to
+                    put here</p>
+            </div>
+            <ul class="list-group list-group-flush">
+                <li class= 'list-group' style= 'display:none'>flush
+                    element</li>
+                <li class="list-group-item">Latest posts</li>
+                <li class="list-group-item">Announcements</li>
+                <li class="list-group-item">Calendars</li>
+                <li class="list-group-item"> Etc.</li>
+            </ul>
+        </div>
+    </div>
+    {% endblock content %}

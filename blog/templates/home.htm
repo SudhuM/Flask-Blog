@@ -1,0 +1,188 @@
+{% extends 'layout.htm'%}
+
+{% block content %}
+
+<!-- main article area -->
+
+<div class= 'row'>
+    <div class= 'col ml-5' style='max-width: 63%'>
+
+        <!-- posts  -->
+        {% for post in posts.items %}
+
+        <div class='card mt-3 mb-2 text-dark bg-light'>
+            <div class="card-body">
+
+                <!-- username and date posted -->
+                <div>
+                    <div>
+                        {% if current_user == post.author %}
+                        <a href= {{ url_for('users.account') }}> <img src={{
+                                url_for
+                                ('static' ,
+                                filename='Profile_Pictures/'+post.author.profile_pic
+                                )
+                                }}
+                                class="img-thumbnail profile-picture"
+                                alt="Profile
+                                Pic">
+                        </a>
+                        {% else %}
+                        <img src={{ url_for
+                            ('static' ,
+                            filename='Profile_Pictures/'+post.author.profile_pic
+                            )
+                            }}
+                            class="img-thumbnail profile-picture" alt="Profile
+                            Pic">
+                        {% endif%}
+                        <h6 class="card-subtitle ml-2 mb-1 text-muted mt-1"
+                            style=
+                            'display : inline;'>
+                            <a href={{ url_for('users.my_posts' ,
+                                username=post.author.username) }}> <span
+                                    class=
+                                    'text-success ml-2'>{{
+                                    post.author.username }}</span></a>
+                        </h6>
+                        <h6 class="card-subtitle ml-2 mb-1 mr-4 text-muted
+                            mt-1"
+                            style=
+                            'display : inline;float:right;'>
+                            <span class="text-info"> <small>Posted on : {{
+                                    post.date_posted.strftime('%Y-%m-%d') }}
+                                </small></span>
+                        </h6>
+                        <hr>
+                    </div>
+                </div>
+                <!-- end -->
+
+                <!-- title and content section -->
+                <div>
+                    <h4 class="card-title text-capitalize mb-4 ml-2"> <a
+                            href=
+                            {{ url_for ('posts.view_post' , post_id=
+                            post.id) }}
+                            class=
+                            'text-dark' style= 'text-decoration : none;'>{{
+                            post.title }}</a>
+                    </h4>
+
+                    <p class="card-text ml-2" id="content">
+                        {{post.content }}</p>
+                </div>
+                <!-- end  -->
+
+                <!-- Edit and delete posts -->
+
+                {% if current_user == post.author %}
+                <div class= 'ml-2 mt-4'>
+                    <hr>
+                    <a class= 'btn btn-outline-info ,
+                        border-info pt-1 pb-1' href={{
+                        url_for('posts.edit_post',
+                        post_id=
+                        post.id) }}
+                        class="card-link text-info ml-2">Edit Post</a>
+
+                    <!-- delete-button -->
+                    <!-- <a href="#" class="card-link text-danger mr-4" style=
+                        'float:right'>Delete</a> -->
+                    <!-- Button trigger modal -->
+                    <button type="button" class="btn btn-outline-danger pt-1
+                        pb-1 mr-4"
+                        data-toggle="modal" data-target="#deleteModal"
+                        style=
+                        'float:right'>
+                        Delete
+                    </button>
+
+                    <!-- Modal -->
+                    <div class="modal fade" id="deleteModal" tabindex="-1"
+                        role="dialog" aria-labelledby="deleteModalLabel"
+                        aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title"
+                                        id="deleteModalLabel">Delete Post</h5>
+                                    <button type="button" class="close"
+                                        data-dismiss="modal"
+                                        aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                    <p>Do You want to delete the post?</p>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn
+                                        btn-info" data-dismiss="modal">No</button>
+                                    <form action={{
+                                        url_for('posts.delete_post'
+                                        ,
+                                        post_id= post.id) }} method= 'POST'>
+                                        <input class= 'btn
+                                            btn-danger' type="submit"
+                                            value='Delete'>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                {% endif %}
+                <!-- end -->
+            </div>
+        </div>
+
+        {% endfor %}
+        <!-- end -->
+
+
+        <!-- Pagination Page Numbering for posts -->
+        <div class= 'mb-5 mt-4' style='text-align : center'>
+            {% for page_num in posts.iter_pages(left_edge = 1, right_edge =
+            1
+            ,left_current =1 ,right_current =2)
+            %}
+            {% if page_num %}
+            {% if page_num == posts.page %}
+            <a class= 'btn btn-primary ml-1 mb-2' href= {{
+                url_for('main.home' , page=page_num) }}>{{ page_num }}</a>
+            {% else%}
+            <a class= 'btn btn-outline-primary ml-1 mb-2' href= {{
+                url_for('main.home' , page=page_num) }}>{{ page_num }}</a>
+            {% endif %}
+            {% else %}
+            ...
+            {% endif %}
+            {% endfor %}
+        </div>
+    </div>
+    <!-- end -->
+
+    <!-- side bar area -->
+
+    <div class= 'col-md-auto ml-5'>
+        <div class="card mt-4 border-secondary side-bar" style= 'width:
+            18rem;
+            float: right;'>
+            <div class="card-body">
+                <h5 class="card-title">Our Sidebar</h5>
+                <p class="card-text">Any Information You would like to
+                    put here</p>
+            </div>
+            <ul class="list-group list-group-flush">
+                <li class= 'list-group' style= 'display:none'>flush
+                    element</li>
+                <li class="list-group-item">Latest posts</li>
+                <li class="list-group-item">Announcements</li>
+                <li class="list-group-item">Calendars</li>
+                <li class="list-group-item"> Etc.</li>
+            </ul>
+        </div>
+    </div>
+    {% endblock content %}

@@ -1,0 +1,140 @@
+{% extends 'layout.htm' %}
+
+{% block content %}
+
+<!-- information Section -->
+
+<div class= 'row'>
+    <div class= 'col'>
+        <div class="card mt-4 mb-3">
+            <div class="row no-gutters mb-5">
+                <!-- left-side -->
+                <div class="col-mt-4 mr-3">
+                    <div class= 'mt-4 ml-4 mb-4' id= 'account-left-section'>
+                        <img src="{{ image_file }}"
+                            class="img-thumbnail" alt="Profile Picture"
+                            style='border-radius : 50%;'>
+
+                        <div class= 'm-3 ml-5'>
+                            <a href={{ url_for('users.my_posts' , username=
+                                current_user.username) }} class= 'btn
+                                btn-outline-info btn-white'>My Posts</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Information Update Form -->
+                <div class="col ml-3">
+                    <div class="card-body">
+                        <div class= ' mt-4 ml-4'>
+
+                            <h2 class="card-title info">{{
+                                current_user.username }}</h2>
+                            <p class="card-text info"> {{
+                                current_user.email }}</p>
+                        </div>
+                        <hr>
+
+                        <form action="" method= 'POST' enctype=
+                            'multipart/form-data'>
+
+                            {{ form.hidden_tag() }}
+
+                            <legend class= ' mb-2 form-group text-secondary'>
+                                Profile Information
+                            </legend>
+
+                            <hr />
+                            <!-- username    -->
+                            <div class="form-group mb-4">
+
+                                {{ form.username.label(class =
+                                'text-success')
+                                }}
+
+                                {{ form.username(class = 'form-control
+                                border-primary') }}
+
+                                <div class= 'text-danger mt-1'>
+                                    {% for error in form.username.errors
+                                    %}
+                                    <small class= 'form-error'>
+                                        {{ error}}
+                                    </small>
+                                    {% endfor %}
+                                </div>
+                            </div>
+
+                            <!-- email -->
+                            <div class="form-group mb-4">
+
+                                {{ form.email.label(class = 'text-success')
+                                }}
+                                {{ form.email(class = 'form-control
+                                border-primary') }}
+
+                                <div class= 'text-danger mt-1'>
+                                    {% for error in form.email.errors %}
+                                    <small class= 'form-error'>
+                                        {{ error}}
+                                    </small>
+
+                                    {% endfor %}
+                                </div>
+                            </div>
+
+                            <!-- File Upload -->
+                            <div class="form-group mt-4 mb-4">
+
+                                {{ form.profile_picture.label(class =
+                                'mt-2
+                                mb-4' , style = 'font-size : 18px;') }}<br>
+                                {{ form.profile_picture }}
+                                <div class= 'text-danger mt-2'>
+                                    {% for error in
+                                    form.profile_picture.errors
+                                    %}
+                                    <span class= 'profile-pic-error'>{{ error }}</span>
+                                    {% endfor %}
+                                </div>
+                            </div>
+
+
+                            <!-- submit button -->
+
+                            <div class= 'mt-4'>
+                                {{ form.update(class = 'btn ,
+                                btn-outline-danger
+                                border-secondary ') }}
+                            </div>
+                        </form>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Side Bar Section -->
+
+    <div class= 'col-md-auto'>
+        <div class="card mt-4 border-secondary" style="width: 18rem;
+            float:right">
+            <div class="card-body">
+                <h5 class="card-title">Our Sidebar</h5>
+                <p class="card-text">Any Information You would like to
+                    put here</p>
+            </div>
+            <ul class="list-group list-group-flush">
+                <li class= 'list-group' style= 'display:none'>flush
+                    element</li>
+                <li class="list-group-item">Latest posts</li>
+                <li class="list-group-item">Announcements</li>
+                <li class="list-group-item">Calendars</li>
+                <li class="list-group-item"> Etc.</li>
+            </ul>
+        </div>
+    </div>
+</div/>
+{% endblock content %}
