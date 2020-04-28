@@ -5,7 +5,6 @@ from flask_login import LoginManager
 from flask_mail import Mail
 from blog.config import Config
 
-
 # instance of the Database
 db = SQLAlchemy()
 
