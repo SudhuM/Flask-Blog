@@ -5,8 +5,6 @@ from blog.posts.forms import PostCreationForm, EditPostForm
 from blog import db
 
 
-# db import need to be fixed
-
 posts = Blueprint('posts', __name__)
 
 
