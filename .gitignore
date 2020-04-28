@@ -1,7 +1,6 @@
 /env
 *.db
 *.pyc
-config.py
 *.xml
 /blog/static/Profile_Pictures/*
 *.jpg
