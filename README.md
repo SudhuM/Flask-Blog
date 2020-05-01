@@ -1,10 +1,10 @@
 # Flask-Blog
 
-#What is this App
+# What is this App
 
 A flask blog app that was built using Flask framework in python
 
-#How to run
+# How to run
 
 Clone this app with git clone command
 
@@ -24,5 +24,6 @@ set FLASK_ENV = developement
 2nd method
 simply execute python run.py.
 
-4 . Updating or creating the DB
+# Updating or creating the DB
+
 When running thro CLI need to push the (app) to the app context
