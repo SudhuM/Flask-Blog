@@ -5,6 +5,7 @@ from flask_login import LoginManager
 from flask_mail import Mail
 from blog.config import Config
 
+
 # instance of the Database
 db = SQLAlchemy()
 
@@ -23,30 +24,33 @@ mail = Mail()
 # create app factory function
 def create_app(config_class=Config):
 
+    # initiating the app with the from_object function to the Config class object
+
     app = Flask(__name__)
 
-    # initiating the app with the from_object function to the Config class object
     app.config.from_object(Config)
-    # SqlAlchemy database instance
-    db.init_app(app)
+   # SqlAlchemy database instance
 
-    # Crypting instance
-    bcrypt.init_app(app)
+    with app.app_context():
+        db.init_app(app)
 
-    # Mail server instance configuration
-    mail.init_app(app)
+        # Crypting instance
+        bcrypt.init_app(app)
 
-    # login Manager instance
-    login_manager.init_app(app)
+        # Mail server instance configuration
+        mail.init_app(app)
 
-    # routes import from the respective packages
-    from blog.users.routes import users
-    from blog.posts.routes import posts
-    from blog.main.routes import main
+        # login Manager instance
+        login_manager.init_app(app)
 
-    # registering the blue print of the routes.
-    app.register_blueprint(users)
-    app.register_blueprint(posts)
-    app.register_blueprint(main)
+        # routes import from the respective packages
+        from blog.users.routes import users
+        from blog.posts.routes import posts
+        from blog.main.routes import main
+
+        # registering the blue print of the routes.
+        app.register_blueprint(users)
+        app.register_blueprint(posts)
+        app.register_blueprint(main)
 
     return app

@@ -53,3 +53,11 @@ div.post-form {
   width: 180px;
   height: 180px;
 }
+
+#profile-nav a {
+  font-size: 18px;
+}
+
+#profile-nav a:hover {
+  color: #fff;
+}

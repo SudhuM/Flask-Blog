@@ -10,6 +10,7 @@ from blog.posts.models import Post
 from blog import db, bcrypt
 # db and bcrypy import need to be fixed
 
+
 users = Blueprint('users', __name__)
 
 
@@ -170,5 +171,5 @@ def reset_password(token):
         flash('Your password has been successfully updated!You can login now.', 'success')
 
         return redirect(url_for('users.login'))
-
+    form.email.data = user.email
     return render_template('reset_password.htm', title='Reset Password', form=form)

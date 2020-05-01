@@ -5,9 +5,8 @@ from wtforms import StringField, SubmitField, TextAreaField, PasswordField, Bool
 from wtforms.validators import InputRequired, DataRequired, Length, Email, EqualTo, ValidationError
 from flask_login import current_user
 
+
 # Registration form
-
-
 class RegistrationForm(FlaskForm):
 
     username = StringField('UserName', validators=[InputRequired(), DataRequired(),
@@ -106,7 +105,7 @@ class RequestResetPasswordForm(FlaskForm):
 
 
 class ResetPasswordForm(FlaskForm):
-
+    email = StringField('Email Id')
     password = PasswordField('Password', validators=[
         InputRequired(), DataRequired(), Length(min=6,  max=15)])
 

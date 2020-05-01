@@ -2,6 +2,7 @@ import secrets
 import os
 from flask import url_for, current_app
 from blog import mail
+from flask import current_app
 from PIL import Image
 from flask_mail import Message
 

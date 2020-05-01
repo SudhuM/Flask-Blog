@@ -1,5 +1,6 @@
 from blog import db
 from datetime import datetime
+from flask import current_app
 
 
 class Post(db.Model):
