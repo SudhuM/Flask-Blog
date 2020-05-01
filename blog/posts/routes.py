@@ -9,7 +9,7 @@ posts = Blueprint('posts', __name__)
 
 
 # post creation route
-@posts.route('/post', methods=['GET', 'POST'])
+@posts.route('/post_creation', methods=['GET', 'POST'])
 @login_required
 def post_creation():
 
@@ -47,7 +47,7 @@ def edit_post(post_id):
     return render_template('editpost.htm', title=post.title, form=form)
 
 
-@posts.route('/post/delete/<int:post_id>', methods=['GET', 'POST'])
+@posts.route('/post/<int:post_id>', methods=['GET', 'POST'])
 @login_required
 def delete_post(post_id):
 

@@ -49,8 +49,8 @@ def create_app(config_class=Config):
         from blog.main.routes import main
 
         # registering the blue print of the routes.
-        app.register_blueprint(users)
-        app.register_blueprint(posts)
+        app.register_blueprint(users, url_prefix='/users')
+        app.register_blueprint(posts, url_prefix='/posts')
         app.register_blueprint(main)
 
     return app

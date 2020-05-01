@@ -1,12 +1,12 @@
 from flask import (Blueprint, render_template, redirect,
-                   request, url_for, flash, abort)
+                   request, url_for, flash, abort, session)
 from blog.users.forms import (
     RegistrationForm, LoginForm, UpdateForm, RequestResetPasswordForm, ResetPasswordForm)
 from blog.users.models import User
 from flask_login import current_user, login_user, logout_user, login_required
 from blog.users.utils import save_picture, send_password_reset_email
 from blog.posts.models import Post
-
+from datetime import timedelta
 from blog import db, bcrypt
 # db and bcrypy import need to be fixed
 
@@ -51,8 +51,10 @@ def login():
         user = User.query.filter_by(email=form.email.data).first()
         password_check_status = password_check(form, user)
         if user and password_check_status:
-            login_user(user, remember=form.remember_me.data)
+            login_user(user, remember=form.remember_me.data,
+                       duration=timedelta(seconds=3600))
             flash('You have successfully logged in.', 'success')
+
             return redirect(url_for('main.home'))
         elif not(user):
             flash('Incorrect Email Id.Please check.', 'danger')
