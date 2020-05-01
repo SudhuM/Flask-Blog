@@ -47,7 +47,7 @@ def edit_post(post_id):
     return render_template('editpost.htm', title=post.title, form=form)
 
 
-@posts.route('/delete/<int:post_id>', methods=['GET', 'POST'])
+@posts.route('/post/delete/<int:post_id>', methods=['GET', 'POST'])
 @login_required
 def delete_post(post_id):
 

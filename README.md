@@ -15,14 +15,15 @@ run the run.py app using the either of the methods
 1.  in the terminal run -
     pip install -r requirements.txt
 
-2.Set the environment variables
-set FLASK_APP = run.py
-set FLASK_ENV = developement
+2.  Set the environment variables
+    set FLASK_APP = run.py
+    set FLASK_ENV = developement
 
 3.  execute flask run
 
 2nd method
-simply execute python run.py.
+
+1. simply execute python run.py.
 
 # Updating or creating the DB
 

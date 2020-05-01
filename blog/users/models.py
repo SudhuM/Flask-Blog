@@ -8,6 +8,7 @@ from itsdangerous import TimedJSONWebSignatureSerializer as Serializer
 # user Loader
 @login_manager.user_loader
 def user_loader(user_id):
+    # user_id is a string , so need to be converted to an int
     return User.query.get(int(user_id))
 
 # Database Model Classes
