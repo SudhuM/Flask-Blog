@@ -5,7 +5,7 @@ class Config:
 
     # global app configuration
     SECRET_KEY = os.environ.get('SECRET_KEY')
-    SQLALCHEMY_DATABASE_URI = os.envoiron.get('DATABASE_URL')
+    SQLALCHEMY_DATABASE_URI = os.environ.get('DATABASE_URL')
     # mail server configuration
     MAIL_SERVER = 'smtp.googlemail.com'
     MAIL_PORT = 587
