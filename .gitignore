@@ -1,5 +1,4 @@
 /env
-config.py
 *.db
 *.pyc
 *.xml
@@ -8,11 +7,6 @@ config.py
 *.png
 /__pycache__
 /.idea/*
-/.vscode/*
-<<<<<<< HEAD
-<<<<<<< HEAD
+/.vscode
+/blog/config.py
 
-=======
->>>>>>> parent of ec49f18... Changed some settings
-=======
->>>>>>> parent of ec49f18... Changed some settings
