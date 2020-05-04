@@ -10,7 +10,7 @@ main = Blueprint('main', __name__)
 @current_app.before_request
 def before_request():
     session.permanent = True
-    current_app.permanent_session_lifetime = timedelta(seconds=3600)
+    current_app.permanent_session_lifetime = timedelta(seconds=1800)
     session.modified = True
     SESSION_REFRESH_EACH_REQUEST = True
 

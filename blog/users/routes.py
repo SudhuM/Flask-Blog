@@ -19,6 +19,10 @@ users = Blueprint('users', __name__)
 def register():
     form = RegistrationForm()
 
+    if current_user.is_authenticated:
+        flash('You have already logged in!', 'info')
+        return redirect(url_for('main.home'))
+
     if form.validate_on_submit():
         user = registration_data(form)
         if user:
@@ -47,12 +51,16 @@ def registration_data(form):
 def login():
     form = LoginForm()
 
+    if current_user.is_authenticated:
+        flash('You have already logged in!', 'info')
+        return redirect(url_for('main.home'))
+
     if form.validate_on_submit():
         user = User.query.filter_by(email=form.email.data).first()
         password_check_status = password_check(form, user)
         if user and password_check_status:
             login_user(user, remember=form.remember_me.data,
-                       duration=timedelta(seconds=3600))
+                       duration=timedelta(seconds=1800))
             flash('You have successfully logged in.', 'success')
 
             return redirect(url_for('main.home'))
