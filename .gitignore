@@ -9,4 +9,7 @@ config.py
 /__pycache__
 /.idea/*
 /.vscode/*
+<<<<<<< HEAD
 
+=======
+>>>>>>> parent of ec49f18... Changed some settings
